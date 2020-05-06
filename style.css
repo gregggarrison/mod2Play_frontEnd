@@ -18,6 +18,7 @@ body {
     width: 500px;
     height: 500px;
     perspective: 1000px;
+    display: flex;
   }
   
   .card {

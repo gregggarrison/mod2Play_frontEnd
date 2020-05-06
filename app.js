@@ -1,5 +1,11 @@
+const container = document.querySelector(".container")
+
+
 document.addEventListener('DOMContentLoaded', (event)=>{
-    function flip(event){
+  // const queryParams = new URLSearchParams(window.location.search)
+  // const id = queryParams.get("id")
+  
+  function flip(event){
         var element = event.currentTarget;
         if (element.className === "card") {
         if(element.style.transform == "rotateY(180deg)") {
@@ -11,28 +17,28 @@ document.addEventListener('DOMContentLoaded', (event)=>{
       }
     };
 
-
-
-const queryParams = new URLSearchParams(window.location.search)
-const id = queryParams.get("id")
+   
 
 fetch("http://localhost:3000/jobs")
     .then(respn => respn.json())
     .then(jobs => {jobs.forEach(job => {
-
-        const container = document.createElement('div')
-        container.setAttribute("class", "container")
+    
+        // const container = document.createElement('div')
+        // container.setAttribute("class", "container")
         const card = document.createElement('div')
         card.setAttribute("class", "card")
-        card.setAttribute(onclick,"flip(event")
+        card.setAttribute("onclick","flip(event)")
         const front = document.createElement('div')
         front.setAttribute("class", "front")
         const back = document.createElement('div')
         back.setAttribute("class", "back")
         const jobDescription = document.createElement('h1')
 
+        
 
-
+        card.addEventListener('click', event => {
+          flip(event)
+        })
         const jobTitle = document.createElement('h1')
         const jobLocation = document.createElement('p')
 
@@ -40,24 +46,15 @@ fetch("http://localhost:3000/jobs")
         jobLocation.innerText = job.location
         jobDescription.innerText = job.description
 
-
-
-
-        document.body.appendChild(container)
+      
         container.appendChild(card)
         card.appendChild(front)
         front.append(jobTitle, jobLocation)
 
         card.appendChild(back)
-        back.appendChild(jobDescription)
-
-
-
+        back.append(jobLocation)
 
     })})
  
-
-
-
     
 })
