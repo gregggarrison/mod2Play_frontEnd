@@ -22,9 +22,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
 fetch("http://localhost:3000/jobs")
     .then(respn => respn.json())
     .then(jobs => {jobs.forEach(job => {
-    
-        // const container = document.createElement('div')
-        // container.setAttribute("class", "container")
+  
         const card = document.createElement('div')
         card.setAttribute("class", "card")
         card.setAttribute("onclick","flip(event)")
@@ -33,7 +31,8 @@ fetch("http://localhost:3000/jobs")
         const back = document.createElement('div')
         back.setAttribute("class", "back")
         const jobDescription = document.createElement('h1')
-
+        const companyLogo = document.createElement('img')
+        
         
 
         card.addEventListener('click', event => {
@@ -45,6 +44,7 @@ fetch("http://localhost:3000/jobs")
         jobTitle.innerText = job.title
         jobLocation.innerText = job.location
         jobDescription.innerText = job.description
+        companyLogo.src = job.company_logo
 
       
         container.appendChild(card)
@@ -52,7 +52,7 @@ fetch("http://localhost:3000/jobs")
         front.append(jobTitle, jobLocation)
 
         card.appendChild(back)
-        back.append(jobLocation)
+        back.append(companyLogo)
 
     })})
  
