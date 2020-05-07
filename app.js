@@ -22,9 +22,7 @@ document.addEventListener('DOMContentLoaded', (event)=>{
 fetch("http://localhost:3000/jobs")
     .then(respn => respn.json())
     .then(jobs => {jobs.forEach(job => {
-    
-        // const container = document.createElement('div')
-        // container.setAttribute("class", "container")
+  
         const card = document.createElement('div')
         card.setAttribute("class", "card")
         card.setAttribute("onclick","flip(event)")
@@ -32,28 +30,34 @@ fetch("http://localhost:3000/jobs")
         front.setAttribute("class", "front")
         const back = document.createElement('div')
         back.setAttribute("class", "back")
-        const jobDescription = document.createElement('h1')
-
+        const jobDescription = document.createElement('h3')
+        const companyLogo = document.createElement('img')
+        const saveButton = document.createElement('button')
         
-
+        
         card.addEventListener('click', event => {
           flip(event)
         })
         const jobTitle = document.createElement('h1')
         const jobLocation = document.createElement('p')
+        const companyURL = document.createElement('h1')
+        const jobURL = document.createElement('h1')
         
-
+        // saveButton.innerHTML = type="submit" value="Save"
         jobTitle.innerText = job.title
         jobLocation.innerText = job.location
-        jobDescription.innerText = job.description
-
+        jobDescription.innerHTML = job.description
+        companyLogo.src = job.company_logo
+        companyURL.innerHTML = `<a href=${job.company_url} target="_blank">${job.company}</a>`
+        jobURL.innerHTML = `<a href=${job.how_to_apply} target="_blank"></a>`
       
-        container.appendChild(card)
-        card.appendChild(front)
-        front.append(jobTitle, jobLocation)
+        container.append(card)
+        card.append(front)
+        front.append(jobTitle, jobLocation, companyLogo)
 
-        card.appendChild(back)
-        back.append(jobLocation)
+        card.append(back)
+        back.append(companyURL)
+        back.append(jobURL, saveButton)
 
     })})
  
