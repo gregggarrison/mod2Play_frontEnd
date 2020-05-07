@@ -1,3 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Dosis', sans-serif;
+  line-height: 1.6;
+  color: rgb(106, 106, 106);
+  background: rgba(23, 23, 23, 0.975);
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto
+}
+
 body {
     margin: 0;
     width: 100%;
@@ -11,14 +29,53 @@ body {
   div {
     width: 100%;
     height: 100%;
+    flex-wrap: wrap;
+    display: flex;
   }
+  
+  h1 {
+    text-align: center;
+    padding: 1.5rem 1.5rem;
+    /* background-image: linear-gradient(120deg, #3e3f3ea9 0%, #a6c0ee73 100%); */
+    margin: 0 0 2rem 0;
+    font-size: 2.5rem;
+    /* color: rgb(160, 160, 160); */
+  }
+  
+  img {
+    display: block;
+    margin: 1rem auto;
+    max-width: 50%;
+  }
+  
+  h2 {
+    padding: 2.5rem 2.5rem;
+    margin: 0;
+    text-align: center;
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    padding: 0 2.5rem 2.5rem;
+    margin: 0;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  p {
+    padding: 0 2.5rem 2.5rem;
+    margin: 0;
+    text-align: center;
+    font-size: 1.8rem;
+  }
+  
   
   .container {
     margin: 20px;
     width: 500px;
     height: 500px;
     perspective: 1000px;
-    display: flex;
+    /* display: flex; */
   }
   
   .card {
@@ -38,7 +95,8 @@ body {
   
   .front {
     border: 2px solid black;
-    background: url("http://placehold.it/250x250");
+    border-radius: 25px;
+    background: url("https://wpamelia.com/wp-content/uploads/2019/02/astronomy-constellation-dark-998641.jpg");
   }
   
   .front:hover {
@@ -49,7 +107,9 @@ body {
   
   .back {
     border: 2px solid black;
-    background: url("http://placehold.it/100x100");
+    border-radius: 25px;
+    background: url("https://wpamelia.com/wp-content/uploads/2019/02/astronomy-constellation-dark-998641.jpg");
+    /* background: black */
     transform: rotateY(180deg);
   }
   

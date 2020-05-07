@@ -41,6 +41,7 @@ fetch("http://localhost:3000/jobs")
         })
         const jobTitle = document.createElement('h1')
         const jobLocation = document.createElement('p')
+        
 
         jobTitle.innerText = job.title
         jobLocation.innerText = job.location
