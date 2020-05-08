@@ -2,12 +2,8 @@ const container = document.querySelector(".container")
 const queryParams = new URLSearchParams(window.location.search)
 const id = queryParams.get("id")
 let allJobs = [];
-let searchString = 'ruby'
-let searchKey = 'description'
-
 
 document.addEventListener('DOMContentLoaded', (event) => {
-
 
   function flip(event) {
     var element = event.currentTarget;
@@ -21,29 +17,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
   };
 
-  function filterJobs(searchText) {
-
-  }
-
   function removeAllJobs() {
     const allCards = document.getElementsByClassName('card')
     Array.from(allCards).forEach((card) => {
       card.remove()
     })
   }
-
-
-
-
-
-
   function renderJobs(jobs) {
-    console.log(jobs)
     jobs.forEach(job => {
 
       const card = document.createElement('div')
       card.setAttribute("class", "card")
-      card.setAttribute("onclick", "flip(event)")
       const front = document.createElement('div')
       front.setAttribute("class", "front")
       const back = document.createElement('div')
@@ -64,11 +48,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
       jobTitle.innerText = job.title
       jobLocation.innerText = job.location
       jobDescription.innerHTML = job.description
-      console.log(job)
-      companyLogo.src = job.company_logo
+
+      companyLogo.src = job.company_logo || "https://image.shutterstock.com/image-vector/no-image-available-sign-internet-600w-261719003.jpg"
       companyURL.innerHTML = `<a href=${job.company_url} target="_blank">${job.company}</a>`
       jobURL.innerHTML = `<a href=${job.company_url} target="_blank">Apply to: ${job.company}</a>`
-      saveButton.innerHTML = `<input type="submit" value="Save to Favorites" />`
+      saveButton.innerText = "Save to Favorites"
       container.append(card)
       card.append(front)
       front.append(jobTitle, jobLocation, companyLogo)
@@ -77,45 +61,24 @@ document.addEventListener('DOMContentLoaded', (event) => {
       jobID.innerText = job.id
       back.append(companyURL, jobURL, saveButton, jobID)
 
-
-
-
       saveButton.addEventListener("click", () => {
         event.preventDefault()
-       
+
         let formData = {
-          user_id: 4,
-          job_id: JobID.value
+          user_id: 8,
+          job_id: job.id
         }
-        function createFavorite(formData) {   }
+
         fetch('http://localhost:3000/favorites', {
           method: 'POST',
           body: JSON.stringify(formData),
-          // headers: {
-            //   'Content-Type': 'application/json'
-            // }
-          })
-          
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+
       })
-
-
-
-
-
-
-
-
-
     })
-
-
-
-
-
-
-
-
-
   }
 
   const searchBox = document.getElementById('searchBox')
@@ -131,22 +94,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   })
 
-
-
-
   fetch("http://localhost:3000/jobs")
     .then(respn => respn.json())
     .then(jobs => {
-
-
 
       allJobs = jobs
       renderJobs(allJobs);
 
     })
-
-
-
-
-
 })
