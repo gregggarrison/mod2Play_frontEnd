@@ -57,33 +57,59 @@ document.addEventListener('DOMContentLoaded', (event) => {
         flip(event)
       })
       const jobTitle = document.createElement('h1')
-			const jobLocation = document.createElement('p')
-			const companyURL = document.createElement('h1')
-			const jobURL = document.createElement('h1')
-			const realJobURL = job.how_to_apply.match(/\bhttps?:\/\/\S+/gi);
-			jobTitle.innerText = job.title
-			jobLocation.innerText = job.location
-			jobDescription.innerHTML = job.description
-			companyLogo.src = job.company_logo
-			companyURL.innerHTML = `<a href=${job.company_url} target="_blank">${job.company}</a>`
-			jobURL.innerHTML = `<a href=${job.company_url} target="_blank">Apply to: ${job.company}</a>`
-			saveButton.innerHTML = `<input type="submit" value="Save to Favorites" />`
-			container.append(card)
-			card.append(front)
-			front.append(jobTitle, jobLocation, companyLogo)
-			card.append(back)
-      back.append(companyURL, jobURL, saveButton)
-      
-      const favoriteForm = document.createElement("form")
-     favor
+      const jobLocation = document.createElement('p')
+      const companyURL = document.createElement('h1')
+      const jobURL = document.createElement('h1')
+      const realJobURL = job.how_to_apply.match(/\bhttps?:\/\/\S+/gi);
+      jobTitle.innerText = job.title
+      jobLocation.innerText = job.location
+      jobDescription.innerHTML = job.description
+      console.log(job)
+      companyLogo.src = job.company_logo
+      companyURL.innerHTML = `<a href=${job.company_url} target="_blank">${job.company}</a>`
+      jobURL.innerHTML = `<a href=${job.company_url} target="_blank">Apply to: ${job.company}</a>`
+      saveButton.innerHTML = `<input type="submit" value="Save to Favorites" />`
+      container.append(card)
+      card.append(front)
+      front.append(jobTitle, jobLocation, companyLogo)
+      card.append(back)
+      let jobID = document.createElement('jobID')
+      jobID.innerText = job.id
+      back.append(companyURL, jobURL, saveButton, jobID)
 
-     back.appendChild(favoriteForm)
-      
+
+
+
+      saveButton.addEventListener("click", () => {
+        event.preventDefault()
+       
+        let formData = {
+          user_id: 4,
+          job_id: JobID.value
+        }
+        function createFavorite(formData) {   }
+        fetch('http://localhost:3000/favorites', {
+          method: 'POST',
+          body: JSON.stringify(formData),
+          // headers: {
+            //   'Content-Type': 'application/json'
+            // }
+          })
+          
+      })
+
+
+
+
+
+
+
+
 
     })
 
-    
-    
+
+
 
 
 

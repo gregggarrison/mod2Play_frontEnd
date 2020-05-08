@@ -7,10 +7,14 @@ fetch(`http://localhost:3000/users/${id}`)
     .then(user => {
         console.log(user)
         let h1 = document.createElement('h1')
+        let h2 = document.createElement('h2')
         let ul = document.createElement('ul')
         h1.innerText = `${user.first_name} ${user.last_name}`
-        ul.innerText = user.favorites[0].job_id.title
+        ul.innerText = user.favorites
 
+       h2.innerText = user.favorties.forEach(favorite => {
+            favorite.id.title
+        })
        
 
         document.body.append(h1, ul)
